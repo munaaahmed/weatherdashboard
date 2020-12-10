@@ -9,8 +9,8 @@
 * [Functionally](#functionally)
 
 ## Demo
-![](images/weatherscreenshot1.png) 
-![](images/weatherscreenshot2.png) 
+![](image/weatherscreenshot1.png) 
+![](image/weatherscreenshot2.png) 
 
 ## Description
 In this app, the user enters the name of the city
