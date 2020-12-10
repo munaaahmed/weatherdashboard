@@ -7,6 +7,27 @@ $(document).ready(function() {
 
     searchWeather(searchValue);
   });
+  var city="";
+// variable declaration
+var searchCity = $("#search-city");
+var searchButton = $("#search-button");
+var clearButton = $("#clear-history");
+var currentCity = $("#current-city");
+var currentTemperature = $("#temperature");
+var currentHumidty= $("#humidity");
+var currentWSpeed=$("#wind-speed");
+var currentUvindex= $("#uv-index");
+var sCity=[];
+// searches the city to see if it exists in the entries from the storage
+function find(c){
+    for (var i=0; i<sCity.length; i++){
+        if(c.toUpperCase()===sCity[i]){
+            return -1;
+        }
+    }
+    return 1;
+}
+var APIKey="e65a7d19dbc02ace093f8c57930d55cb";
 
   $(".history").on("click", "li", function() {
     searchWeather($(this).text());
@@ -20,7 +41,7 @@ $(document).ready(function() {
   function searchWeather(searchValue) {
     $.ajax({
       type: "GET",
-      url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=7ba67ac190f85fdba2e2dc6b9d32e93c&units=imperial",
+      url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=e65a7d19dbc02ace093f8c57930d55cb&units=imperial",
       dataType: "json",
       success: function(data) {
         // create history link for this search
@@ -35,7 +56,7 @@ $(document).ready(function() {
         $("#today").empty();
 
         // create html content for current weather
-        var title = $("<h3>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ")");
+        var title = $("<h5>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ")");
         var card = $("<div>").addClass("card");
         var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH");
         var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
@@ -59,7 +80,7 @@ $(document).ready(function() {
   function getForecast(searchValue) {
     $.ajax({
       type: "GET",
-      url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=7ba67ac190f85fdba2e2dc6b9d32e93c&units=imperial",
+      url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=e65a7d19dbc02ace093f8c57930d55cb&units=imperial",
       dataType: "json",
       success: function(data) {
         // overwrite any existing content with title and empty row
@@ -93,7 +114,7 @@ $(document).ready(function() {
   function getUVIndex(lat, lon) {
     $.ajax({
       type: "GET",
-      url: "http://api.openweathermap.org/data/2.5/uvi?appid=7ba67ac190f85fdba2e2dc6b9d32e93c&lat=" + lat + "&lon=" + lon,
+      url: "http://api.openweathermap.org/data/2.5/uvi?appid=e65a7d19dbc02ace093f8c57930d55cb&lat=" + lat + "&lon=" + lon,
       dataType: "json",
       success: function(data) {
         var uv = $("<p>").text("UV Index: ");

@@ -1,0 +1,16 @@
+.navbar-brand{
+    font-size: 30px !important;
+    padding: 0px;
+}
+.navbar {
+   box-shadow: 6px 6px 6px #978fa5;
+   width: 100%;
+   padding: 0;
+   margin-bottom: 10px;
+}
+
+
+ li:hover {
+    font-size: 17px;
+    cursor: pointer;
+ }
